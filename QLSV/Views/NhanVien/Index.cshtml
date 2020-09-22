@@ -1,0 +1,59 @@
+﻿@model IEnumerable<QLSV.Models.NhanVien>
+
+@{
+    ViewBag.Title = "QUẢN LÝ SINH VIÊN NGOẠI TRÚ";
+}
+
+<h2>QUẢN LÝ DANH SÁCH SINH VIÊN NGOẠI TRÚ</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới sinh viên vào danh sách", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoVaTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </th>   
+        <th>
+            @Html.DisplayNameFor(model => model.IdChucVu)
+        </th>
+   
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoVaTen)
+        </td>
+        <td>
+            @(item.GioiTinh?"Nam":"Nữ")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoai)
+        </td>
+      
+        <td>
+            @(item.ChucVu==null?"":item.ChucVu.TenChucVu)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Chi Tiết", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
